@@ -1,0 +1,2 @@
+add_subdirectory(worker1)
+add_subdirectory(worker2)

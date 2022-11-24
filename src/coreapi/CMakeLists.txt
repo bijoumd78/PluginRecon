@@ -1,0 +1,22 @@
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp) 
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+
+add_library(coreapi SHARED ${SOURCES} ${HEADERS})
+target_include_directories(coreapi PRIVATE FLogger)
+set_target_properties(coreapi PROPERTIES DEFINE_SYMBOL BUILDING_CORE)
+set_target_properties(coreapi PROPERTIES FOLDER "core")
+
+install(TARGETS
+    coreapi
+    ARCHIVE
+    DESTINATION ${INSTALL_LIBDIR}
+    COMPONENT lib
+    RUNTIME
+    DESTINATION ${INSTALL_BINDIR}
+    COMPONENT bin
+    LIBRARY
+    DESTINATION ${INSTALL_LIBDIR}
+    COMPONENT lib
+    PUBLIC_HEADER
+    DESTINATION ${INSTALL_INCLUDEDIR}
+    COMPONENT dev)
